@@ -1,5 +1,9 @@
 ## 367. Valid Perfect Square
 
+[teset]: https://leetcode.com/problems/valid-perfect-square/
+
+
+
 ### Description
 
 Given a positive integer *num*, write a function which returns True if *num* is a perfect square else False.
