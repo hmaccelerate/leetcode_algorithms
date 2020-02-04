@@ -1,32 +1,16 @@
-## 367. Valid Perfect Square
+## [367. Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/)
 
-[teset]: https://leetcode.com/problems/valid-perfect-square/
+### Analysis
 
+#### Binary Search
 
+1. When num<2, it always return 1;
+2. Initializing variables, using long type not int type
+3. For  num>2 the square root a , a is always less than num/2 and greater than 1: 1 < x <<num/2
+4. Set the left boundary to 2, and the right boundary to num / 2.
+5. While using  (start<=end), use start=mid+1 and end=mid-1, not start=mid and end=mid
 
-### Description
-
-Given a positive integer *num*, write a function which returns True if *num* is a perfect square else False.
-
-**Note:** **Do not** use any built-in library function such as `sqrt`.
-
-### **Example 1:**
-
-```
-Input: 16
-Output: true
-```
-
-**Example 2:**
-
-```
-Input: 14
-Output: false
-```
-
-
-
-### Resolution:
+### Solution:
 
 ```java
 class Solution {
@@ -39,16 +23,7 @@ class Solution {
             if(guessSquared == num) return true;
             else if(guessSquared < num){start=mid+1;} 
             else {end=mid-1;} 
-            // if(num/mid==mid){return true;} 
-            // else if(num/mid>mid){start=mid+1;} 
-            // else{end=mid-1;} 
     }
-        // if(num/start==start) 
-        //     return true;
-        // else if(num/end==end) 
-        //     return true;
-        // else 
             return false;
 }}
 ```
-
