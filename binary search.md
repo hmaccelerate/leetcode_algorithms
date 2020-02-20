@@ -3,8 +3,140 @@
 1. while(conditional)和candidates
    - while(left<right)：left和right会停止在同一个位置，只有一个candidate讨论
    - while(left+1<right)：left会停在前一个位置，right会停在后一个位置，有两个个candidate讨论
+<<<<<<< HEAD
    - while(left+1<=right) or while(left<=right)：right会停在前一个位置，left会停在后一个位置，有两个个candidate讨论
 2.  left/right = mid/mid+1/mid-1
+=======
+   - while(left+1<=right) or while(left<=right)：right会停在前一个位置，left会停在后一个位置，没有candidate讨论
+2.  left/right = mid/mid+1/mid-1
+   - while(left+1<right)：使用 left/right = mid
+3. 边界讨论
+
+## [704. Binary Search](https://leetcode.com/problems/binary-search/)
+
+### Analysis
+
+## [First Position of Target]()
+
+### Analysis
+
+## [Last Position of Target]()
+
+### Analysis
+
+## [34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+### Analysis
+
+1. 这题是典型的two times binary search 题目
+2. 首先使用第一次binary search 找到first position，然后第二次使用binary search 找到last position
+
+```java
+class Solution {
+    public int findFirstPosition(int[] nums, int target){
+//         int left =0;
+//         int right =nums.length-1;
+//         //         让mid向最左边的target逼近
+//         while(left<right){
+//             int mid =(left+right)/2;
+//             if(nums[mid]<target){
+//                 left = mid+1;
+//             }else{
+//                 right = mid;
+//             }
+//         }
+        
+//         if(nums[left]!=target){
+//             return -1;
+//         }else{
+//             return left;
+//         }
+        
+        int start = 0, end = nums.length - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target) {
+                end = mid;
+            } else if (nums[mid] < target) {
+                start = mid;
+                // or start = mid + 1
+            } else {
+                end = mid;
+                // or end = mid - 1
+            }
+        }
+        
+        if (nums[start] == target) {
+            return start;
+        }
+        if (nums[end] == target) {
+            return end;
+        }
+        return -1;
+    
+        
+    }
+    
+     public int findLastPosition(int firstPosition,int[] nums, int target){
+//          //         让mid向最右边的target逼近
+//         int left = firstPosition;
+//         int right= nums.length-1;
+//         while(left<right){
+//             int mid =(left+right)/2+1;// 为啥这个跟上面不同
+//             if(nums[mid]>target){
+//                 right = mid-1;
+//             }else{
+//                 left = mid;
+//             }
+//         }
+        
+//         return right;
+         int start = 0, end = nums.length - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target) {
+                start = mid;
+            } else if (nums[mid] < target) {
+                start = mid;
+                // or start = mid + 1
+            } else {
+                end = mid;
+                // or end = mid - 1
+            }
+        }
+        
+        
+        if (nums[end] == target) {
+            return end;
+        }
+         if (nums[start] == target) {
+            return start;
+        }
+        return -1;
+         
+    }
+
+    
+    public int[] searchRange(int[] nums, int target) {
+        int[] result = {-1,-1};
+        if(nums==null|| nums.length==0){
+            return result;
+        }
+        
+        int firstPosition = findFirstPosition(nums, target);
+        if (firstPosition==-1)
+            return result;
+        result[0]=firstPosition;
+        
+        int lastPositon = findLastPosition(firstPosition, nums,  target);
+        result[1]=lastPositon;
+        return result;
+}
+}
+```
+
+
+>>>>>>> add Two Pointers.md
 
 ## 367. Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/)
 
@@ -186,6 +318,7 @@ class Solution {
 }
 ```
 
+<<<<<<< HEAD
 ## [\34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
 ### Analysis
@@ -297,3 +430,5 @@ class Solution {
 }
 ```
 
+=======
+>>>>>>> add Two Pointers.md
