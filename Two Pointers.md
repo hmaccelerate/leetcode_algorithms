@@ -1,3 +1,5 @@
+
+
 ## [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/solution/)
 
 ### Analysis
@@ -6,7 +8,7 @@
 
 1. Since the array is already sorted, we can keep two pointers i and j, where i is the slow-runner while j is the fast-runner. As long as nums[i] = nums[j], we increment j to skip the duplicate.
 
-### Solution:
+### Solution
 
 ```java
 class Solution {
@@ -33,7 +35,7 @@ class Solution {
    时间复杂度：O(n);
    空间复杂度：常数2
 
-### Solution:
+### Solution
 
 ```java
 class Solution {
@@ -55,7 +57,7 @@ class Solution {
 }
 ```
 
-## [\344. Reverse String](https://leetcode.com/problems/reverse-string/)
+## [344. Reverse String](https://leetcode.com/problems/reverse-string/)
 
 ### Analysis
 
@@ -80,7 +82,7 @@ class Solution {
     - Time complexity : O(*N*) time to perform N/2*N*/2 swaps.
     - Space complexity :O(*N*) to keep the recursion stack.
 
-Solution:
+### Solution
 
 - ​	Two pointers
 
@@ -122,14 +124,14 @@ class Solution {
 }
 ```
 
-## [\125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
+## [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
 
-- ### Analysis
-  - Two pointers（Reverse类）
-    - 消除所有标点符号
-    - 相向双指针
+### Analysis
+- Two pointers（Reverse类）
+  - 消除所有标点符号
+  - 相向双指针
 
-- Solution
+### Solution
 
 ```java
 class Solution {
@@ -151,13 +153,13 @@ class Solution {
 
 ## [1. Two Sum](https://leetcode.com/problems/two-sum/)
 
-- ### Analysis
+### Analysis
 
-  - **Complexity Analysis:**
-    - Time complexity : O(n)*O*(*n*). We traverse the list containing n*n* elements only once. Each look up in the table costs only O(1)*O*(1) time.
-    - Space complexity : O(n)*O*(*n*). The extra space required depends on the number of items stored in the hash table, which stores at most n*n* elements.
+- **Complexity Analysis:**
+  - Time complexity : O(n)*O*(*n*). We traverse the list containing n*n* elements only once. Each look up in the table costs only O(1)*O*(1) time.
+  - Space complexity : O(n)*O*(*n*). The extra space required depends on the number of items stored in the hash table, which stores at most n*n* elements.
 
-- Solution
+### Solution
 
 ```java
 class Solution {
@@ -174,6 +176,65 @@ class Solution {
         }
         return result;
         
+    }
+}
+```
+
+## [15. 3Sum](https://leetcode.com/problems/3sum/)
+
+### Analysis
+
+- 数组要先排序
+- 使用传统的三指针：最外层一个for loop + 里层的while lopp的left/ right。最外层的代表一个数，里层使用two sum(sorted array)思路，确保三个数加在一起是等于target
+- 遇到重复元素，向前移动，否则会出现重复答案
+- 
+- Complexity Analysis:
+  - Time complexity : O(n)*O*(*n*). 
+  - Space complexity : O(n)
+
+### Solution
+
+```java
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(nums==null || nums.length<3)
+            return result;
+        Arrays.sort(nums);
+        int target=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>0)break;
+             //遇到重复元素，向前移动，否则会出现重复答案
+            if(i>0 && nums[i]==nums[i-1])continue;
+            int left=i+1;
+            int right=nums.length-1;
+            while(left<right){
+                if(nums[i]+nums[left]+nums[right]==target){
+                    List<Integer> subResult=new ArrayList<Integer>();
+                    subResult.add(nums[i]);
+                    subResult.add(nums[left]);
+                    subResult.add(nums[right]);
+                    result.add(subResult);
+                    left++;
+                    right--;
+                    //while loop 确保不越界&&遇到重复元素，向前移动，否则会出现重复答案
+                    while (left < right && nums[left] == nums[left - 1]){
+                        left ++;
+                    }
+                    
+                    while (left < right && nums[right]  == nums[right + 1]){
+                        right --;
+                    }
+                }
+                else if(nums[i]+nums[left]+nums[right]<target){
+                    left=left+1;
+                }
+                else{
+                    right=right-1;
+                }
+            }
+        }
+        return result;
     }
 }
 ```
