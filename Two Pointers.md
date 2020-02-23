@@ -1,7 +1,5 @@
 [TOC]
 
-
-
 ## [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/solution/)
 
 ### Analysis
@@ -189,7 +187,6 @@ class Solution {
 - 数组要先排序
 - 使用传统的三指针：最外层一个for loop + 里层的while lopp的left/ right。最外层的代表一个数，里层使用two sum(sorted array)思路，确保三个数加在一起是等于target
 - 遇到重复元素，向前移动，否则会出现重复答案
-- 
 - Complexity Analysis:
   - Time complexity : O(n)*O*(*n*). 
   - Space complexity : O(n)
@@ -237,6 +234,120 @@ class Solution {
             }
         }
         return result;
+    }
+}
+```
+
+## [18. 4Sum](https://leetcode.com/problems/4sum/)
+
+### Analysis
+
+- 数组要先排序
+
+- If you have already read and implement the 3sum and 4sum by using the sorting approach: reduce them into 2sum at the end, you might already got the feeling that, all ksum problem can be divided into two problems:
+
+  - 2sum Problem
+  - Reduce K sum problem to K – 1 sum Problem
+
+  Therefore, the ideas is simple and straightforward. We could use recursive to solve this problem. Time complexity is O(N^(K-1)).
+
+- 遇到重复元素，向前移动，否则会出现重复答案
+
+- Complexity Analysis:
+
+  - Time complexity : O(n∧3). 
+  - Space complexity : O(n)
+
+### Solution
+
+```java
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        List<List<Integer>> result=ksum( nums,  target,4, 0);
+        return result;
+    }
+    
+    public List<List<Integer>> ksum(int[] nums, int target,int k,int start){
+        List<List<Integer>> result= new ArrayList<>();
+        if(k==2){
+            //注意这里left=start
+            int left=start,right=nums.length-1;
+            while(left<right){
+            int sum =nums[left]+nums[right];
+            if(sum==target){
+                List<Integer> path = new ArrayList<Integer>();
+                path.add(nums[left]);
+                path.add(nums[right]);
+                result.add(path);
+                left++;
+                right--;    
+                while(left<right&&nums[left]==nums[left-1]) left++;
+                while(left<right&&nums[right]==nums[right+1]) right--;
+            }
+            else if(sum<target) left++;
+            else right--;}
+        }else{
+            for(int i=start;i<nums.length-(k-1);i++){
+                //start和k的作用：遇到重复元素，向前移动，否则会出现重复答案
+                //注意这里的k。如果是4sum，那就从循环元素中减去(k-2)个元素
+                if(i>start&&nums[i]==nums[i-1]) continue;
+                List<List<Integer>> temp=ksum(nums,target-nums[i],k-1,i+1);
+                for(List<Integer> item:temp){
+                    item.add(0, nums[i]);
+                }
+                result.addAll(temp);
+            }
+        }
+        return result;
+
+    }
+}
+```
+
+## [16. 3Sum Closest](https://leetcode.com/problems/3sum-closest/)
+
+### Analysis
+
+- 数组要先排序
+
+- 遇到重复元素，向前移动，否则会出现重复答案
+
+- Complexity Analysis:
+
+  - Time complexity : O(n∧2). 
+  - Space complexity : O(n)
+
+### Solution
+
+```java
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        if (nums == null || nums.length < 3) {
+            return -1;
+        }
+        Arrays.sort(nums);
+        int result=nums[0] + nums[1] + nums[2];
+        for(int i=0;i<nums.length-2;i++){
+            if(i>0&&nums[i]==nums[i-1]) continue;
+            // left 应该从i+1开始，避免重复
+            int left=i+1, right= nums.length-1;
+            while(left<right){
+                int sum=nums[i]+nums[left]+nums[right];
+                //比较target与sum的差值：求min(target-sum)
+                if (Math.abs(target - sum) < Math.abs(target - result)) {
+                    result = sum;
+                }
+               if(target>sum){
+                    left++;
+               }else{
+                   right--;
+               }
+            
+            }
+        }
+        return result;
+        
     }
 }
 ```
