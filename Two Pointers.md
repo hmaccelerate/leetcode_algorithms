@@ -385,12 +385,13 @@ class Solution {
 
 ### Analysis
 
+![image-20200226170658993](/photo/image-20200226170658993.png)
+
 - 两个数组的指针从尾端开始扫描，并比较数组大小
 - 考虑以下用例，从而构造逻辑
   - nums1所有数字都大于nums2的情况
   - nums1部分数字大于nums2的情况
   - nums1所有数字全小于nums2的情况
-- 思路![image-20200226170658993](/photo/image-20200226170658993.png)
 - **Complexity Analysis**
   - Time complexity: O(*n*+*m*).
   - Space complexity :O(1).
