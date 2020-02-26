@@ -352,3 +352,61 @@ class Solution {
 }
 ```
 
+## [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/solution/)
+
+### Analysis
+
+- 比较height[i]和height[j]，去找寻最大值，形成最大的面积
+- **Complexity Analysis**
+  - Time complexity : O(n). Single pass.
+  - Space complexity : O(1). Constant space is used.
+
+### Solution
+
+```java
+class Solution {
+    public int maxArea(int[] height) {
+        int i=0,j=height.length-1;
+        int result=0;
+        while(i<j){
+            int temp= (j-i)*Math.min(height[i],height[j]);
+            result=Math.max(result,temp);
+            if(height[i]<height[j]) i++;
+            //if(height[i]<height[j]) 使用这个进行判断会导致time limit exceed，原因是相等的情况没有考虑到
+            else j--;
+        }
+        return result;
+        
+    }
+}
+```
+
+## [\88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
+
+### Analysis
+
+- 两个数组的指针从尾端开始扫描，并比较数组大小
+- 考虑以下用例，从而构造逻辑
+  - nums1所有数字都大于nums2的情况
+  - nums1部分数字大于nums2的情况
+  - nums1所有数字全小于nums2的情况
+- ![image-20200226170658993](D:\IdeaWorkSpaces\leetcode_algorithms\photo\image-20200226170658993.png)
+- **Complexity Analysis**
+  - Time complexity: O(*n*+*m*).
+  - Space complexity :O(1).
+
+### Solution
+
+```java
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i=m-1,j=n-1,k=m+n-1;
+        while(i>=0&&j>=0){
+            if(nums1[i]>nums2[j]) nums1[k--]=nums1[i--];
+            else nums1[k--]=nums2[j--];
+        }
+        while(j>=0) nums1[k--]=nums2[j--];
+    }
+}
+```
+
