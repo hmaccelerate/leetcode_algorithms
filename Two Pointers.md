@@ -390,7 +390,7 @@ class Solution {
   - nums1所有数字都大于nums2的情况
   - nums1部分数字大于nums2的情况
   - nums1所有数字全小于nums2的情况
-- ![image-20200226170658993](D:\IdeaWorkSpaces\leetcode_algorithms\photo\image-20200226170658993.png)
+- ![image-20200226170658993](https://raw.githubusercontent.com/hmaccelerate/leetcode_algorithms/master/photo/image-20200226170658993.png)
 - **Complexity Analysis**
   - Time complexity: O(*n*+*m*).
   - Space complexity :O(1).
