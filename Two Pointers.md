@@ -411,3 +411,41 @@ class Solution {
 }
 ```
 
+### Reference
+
+- [Java 三元运算符](https://www.w3cschool.cn/java/java-ternary-operator.html)
+- [System.arraycopy() in Java](https://www.geeksforgeeks.org/system-arraycopy-in-java/)
+- [Java Ternary Operator](http://tutorials.jenkov.com/java/ternary-operator.html)
+
+## [\3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+
+### Analysis
+
+- A **sliding window** is an abstract concept commonly used in array/string problems. A window is a range of elements in the array/string which usually defined by the start and end indices, i.e. [*i*,*j*) (left-closed, right-open). A sliding window is a window "slides" its two boundaries to the certain direction. For example, if we slide [i, j)[*i*,*j*) to the right by 11 element, then it becomes [*i*+1,*j*+1) (left-closed, right-open).
+- 滑动窗口算法可以用以解决数组/字符串的子元素问题，它可以将嵌套的循环问题，转换为单循环问题，降低时间复杂度
+- keep a hashmap which stores the characters in string as keys and their positions as values, and keep two pointers which define the max substring. move the right pointer to scan through the string , and meanwhile update the hashmap. If the character is already in the hashmap, then move the left pointer to original postition one more step
+- **Complexity Analysis**
+  - Time complexity: O(*n*).
+  - Space complexity (HashMap) : O(min(m, n)). Same as the previous approach.
+
+### Solution
+
+```java
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s.length()==0) return 0;
+        Map<Character, Integer> map= new HashMap<>();
+        int result=0;
+        for(int i=0,j=0;i<s.length();++i){
+            if(map.containsKey(s.charAt(i))){
+                //move original position one more step
+                 j = Math.max(j,map.get(s.charAt(i))+1);
+            }
+            map.put(s.charAt(i),i);
+            result= Math.max(result,i-j+1);
+        }
+        return result;
+    }
+}
+```
+
