@@ -2,7 +2,7 @@
 
 ### Analysis
 
-- 
+- Data structure
 - **Complexity Analysis**
 
 ### Solution
