@@ -13,8 +13,8 @@
     - 这个大分类底下，根据网上的总结，再细分这个tag的类型；
     - 选择做LeetCode submission建议的关联题目
 - 题解
+  - 建议去中文力扣网站搜索答案，然后再看英文答案
   - [LeetCode Solutions: A Record of My Problem Solving Journey](https://github.com/azl397985856/leetcode)
-  - 
 
 步骤
 
@@ -53,14 +53,34 @@ LeetCode 上的题大致分为三种类型：
 |            |                                                     |
 |            |                                                     |
 
+## Template
+
+## []()
+
+### Analysis
+
+- Data structure
+- Complexity Analysis
+
+### Solution
+
+```java
+
+```
+
+### Reference
+
+## Frequently used Git commands
+
+- ​	git add .
+- ​	git commit -m "update two pointers"
+- ​	git push
+
 ## References
 
-- [大家都是如何刷 LeetCode 的？](https://www.zhihu.com/question/280279208 )
+- [大家都是如何刷 LeetCode 的？](https://www.zhihu.com/question/280279208 )f
 - [如何最快速的刷题（官方网站：cspiration.com）](https://www.youtube.com/watch?v=HlIu_kf_KH0)
   - 第一遍：直接看答案，学习数据结构，学习算法
   - 第二遍：自己想，背经典算法，背一些模板题，经典题
   - 第三遍：熟悉所以题目，大部分都要写出来了
   - 遍数：一遍不是一题一次，而是指这个一遍在这个半个小时，反复做了很多次
-
-
-
