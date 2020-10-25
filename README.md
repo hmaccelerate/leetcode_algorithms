@@ -34,7 +34,17 @@
 思路
 
 - 分析问题
-  - 你要思考这道题要结合什么数据结构(hashmap/array/tree?)和pattern(binary search/two pointers/dfs/bfs?)去达到目的
+  - 根据题干描述，分析这道题的pattern
+    - 这道题能拆解为子问题，说明应该考虑递归
+      - DFS
+      - BFS
+    - 这道题求最值，说明应该考虑贪心算法
+    - 这道题求最值，并且有重复子问题，有最小优化结构，有状态转移，使用DP
+    - 这道题的输入数据是数组，可以考虑对它进行排序
+  - 根据这道题的pattern，分析要使用什么数据结构来存储中间数据和结果数据
+    - DFS：stack
+    - BFS：Queue
+    - DP：数组(一维或者二维)
   - 写伪代码的时候，要学会构造不同的输入来模拟不同的情况或者边界条件，这样你才能写出考虑周全的代码
 
 LeetCode 上的题大致分为三种类型：
@@ -69,6 +79,8 @@ LeetCode 上的题大致分为三种类型：
 ```
 
 ### Reference
+
+[]()
 
 ## Frequently used Git commands
 
